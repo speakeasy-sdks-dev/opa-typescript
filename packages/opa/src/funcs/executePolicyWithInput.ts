@@ -3,13 +3,9 @@
  */
 
 import { OpaApiClientCore } from "../core.js";
-import {
-  encodeFormQuery as encodeFormQuery$,
-  encodeJSON as encodeJSON$,
-  encodeSimple as encodeSimple$,
-} from "../lib/encodings.js";
-import * as m$ from "../lib/matchers.js";
-import * as schemas$ from "../lib/schemas.js";
+import { encodeFormQuery, encodeJSON, encodeSimple } from "../lib/encodings.js";
+import * as M from "../lib/matchers.js";
+import { safeParse } from "../lib/schemas.js";
 import { RequestOptions } from "../lib/sdks.js";
 import { extractSecurity, resolveGlobalSecurity } from "../lib/security.js";
 import { pathToFunc } from "../lib/url.js";
@@ -30,7 +26,7 @@ import { Result } from "../types/fp.js";
  * Execute a policy given an input
  */
 export async function executePolicyWithInput(
-  client$: OpaApiClientCore,
+  client: OpaApiClientCore,
   request: operations.ExecutePolicyWithInputRequest,
   options?: RequestOptions,
 ): Promise<
@@ -47,81 +43,81 @@ export async function executePolicyWithInput(
     | ConnectionError
   >
 > {
-  const input$ = request;
+  const input = request;
 
-  const parsed$ = schemas$.safeParse(
-    input$,
-    (value$) =>
-      operations.ExecutePolicyWithInputRequest$outboundSchema.parse(value$),
+  const parsed = safeParse(
+    input,
+    (value) =>
+      operations.ExecutePolicyWithInputRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
-  if (!parsed$.ok) {
-    return parsed$;
+  if (!parsed.ok) {
+    return parsed;
   }
-  const payload$ = parsed$.value;
-  const body$ = encodeJSON$("body", payload$.RequestBody, { explode: true });
+  const payload = parsed.value;
+  const body = encodeJSON("body", payload.RequestBody, { explode: true });
 
-  const pathParams$ = {
-    path: encodeSimple$("path", payload$.path, {
+  const pathParams = {
+    path: encodeSimple("path", payload.path, {
       explode: false,
       charEncoding: "percent",
     }),
   };
 
-  const path$ = pathToFunc("/v1/data/{path}")(pathParams$);
+  const path = pathToFunc("/v1/data/{path}")(pathParams);
 
-  const query$ = encodeFormQuery$({
-    "explain": payload$.explain,
-    "instrument": payload$.instrument,
-    "metrics": payload$.metrics,
-    "pretty": payload$.pretty,
-    "provenance": payload$.provenance,
-    "strict-builtin-errors": payload$["strict-builtin-errors"],
+  const query = encodeFormQuery({
+    "explain": payload.explain,
+    "instrument": payload.instrument,
+    "metrics": payload.metrics,
+    "pretty": payload.pretty,
+    "provenance": payload.provenance,
+    "strict-builtin-errors": payload["strict-builtin-errors"],
   });
 
-  const headers$ = new Headers({
+  const headers = new Headers({
     "Content-Type": "application/json",
     Accept: "application/json",
-    "Accept-Encoding": encodeSimple$(
+    "Accept-Encoding": encodeSimple(
       "Accept-Encoding",
-      payload$["Accept-Encoding"],
+      payload["Accept-Encoding"],
       { explode: false, charEncoding: "none" },
     ),
-    "Content-Encoding": encodeSimple$(
+    "Content-Encoding": encodeSimple(
       "Content-Encoding",
-      payload$["Content-Encoding"],
+      payload["Content-Encoding"],
       { explode: false, charEncoding: "none" },
     ),
   });
 
-  const bearerAuth$ = await extractSecurity(client$.options$.bearerAuth);
-  const security$ = bearerAuth$ == null ? {} : { bearerAuth: bearerAuth$ };
+  const secConfig = await extractSecurity(client._options.bearerAuth);
+  const securityInput = secConfig == null ? {} : { bearerAuth: secConfig };
   const context = {
     operationID: "executePolicyWithInput",
     oAuth2Scopes: [],
-    securitySource: client$.options$.bearerAuth,
+    securitySource: client._options.bearerAuth,
   };
-  const securitySettings$ = resolveGlobalSecurity(security$);
+  const requestSecurity = resolveGlobalSecurity(securityInput);
 
-  const requestRes = client$.createRequest$(context, {
-    security: securitySettings$,
+  const requestRes = client._createRequest(context, {
+    security: requestSecurity,
     method: "POST",
-    path: path$,
-    headers: headers$,
-    query: query$,
-    body: body$,
-    timeoutMs: options?.timeoutMs || client$.options$.timeoutMs || -1,
+    path: path,
+    headers: headers,
+    query: query,
+    body: body,
+    timeoutMs: options?.timeoutMs || client._options.timeoutMs || -1,
   }, options);
   if (!requestRes.ok) {
     return requestRes;
   }
-  const request$ = requestRes.value;
+  const req = requestRes.value;
 
-  const doResult = await client$.do$(request$, {
+  const doResult = await client._do(req, {
     context,
     errorCodes: ["400", "4XX", "500", "5XX"],
     retryConfig: options?.retries
-      || client$.options$.retryConfig,
+      || client._options.retryConfig,
     retryCodes: options?.retryCodes || ["429", "500", "502", "503", "504"],
   });
   if (!doResult.ok) {
@@ -129,11 +125,11 @@ export async function executePolicyWithInput(
   }
   const response = doResult.value;
 
-  const responseFields$ = {
-    HttpMeta: { Response: response, Request: request$ },
+  const responseFields = {
+    HttpMeta: { Response: response, Request: req },
   };
 
-  const [result$] = await m$.match<
+  const [result] = await M.match<
     operations.ExecutePolicyWithInputResponse,
     | errors.ClientError
     | errors.ServerError
@@ -145,17 +141,17 @@ export async function executePolicyWithInput(
     | RequestTimeoutError
     | ConnectionError
   >(
-    m$.json(200, operations.ExecutePolicyWithInputResponse$inboundSchema, {
+    M.json(200, operations.ExecutePolicyWithInputResponse$inboundSchema, {
       hdrs: true,
       key: "SuccessfulPolicyResponse",
     }),
-    m$.jsonErr(400, errors.ClientError$inboundSchema),
-    m$.jsonErr(500, errors.ServerError$inboundSchema),
-    m$.fail(["4XX", "5XX"]),
-  )(response, request$, { extraFields: responseFields$ });
-  if (!result$.ok) {
-    return result$;
+    M.jsonErr(400, errors.ClientError$inboundSchema),
+    M.jsonErr(500, errors.ServerError$inboundSchema),
+    M.fail(["4XX", "5XX"]),
+  )(response, req, { extraFields: responseFields });
+  if (!result.ok) {
+    return result;
   }
 
-  return result$;
+  return result;
 }
