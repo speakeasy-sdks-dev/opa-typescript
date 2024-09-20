@@ -172,7 +172,7 @@ examples:
         query: {}
         header: {}
       requestBody:
-        application/json: {"input": false}
+        application/json: {"input": true}
       responses:
         "200":
           application/json: {"result": "<value>"}

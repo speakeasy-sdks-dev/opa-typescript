@@ -7,8 +7,8 @@ import { ServerErrorLocation } from "@styra/opa/sdk/models/errors";
 
 let value: ServerErrorLocation = {
   file: "<value>",
-  row: 836079,
-  col: 71036,
+  row: 944669,
+  col: 521848,
 };
 ```
 
