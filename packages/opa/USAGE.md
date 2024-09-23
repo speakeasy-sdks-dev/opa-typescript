@@ -24,7 +24,7 @@ async function run() {
   const result = await opaApiClient.executePolicyWithInput({
     path: "app/rbac",
     requestBody: {
-      input: false,
+      input: true,
     },
   });
 

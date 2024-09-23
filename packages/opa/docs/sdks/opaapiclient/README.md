@@ -176,7 +176,7 @@ async function run() {
   const result = await opaApiClient.executePolicyWithInput({
     path: "app/rbac",
     requestBody: {
-      input: false,
+      input: true,
     },
   });
   
@@ -203,7 +203,7 @@ async function run() {
   const res = await executePolicyWithInput(opaApiClient, {
     path: "app/rbac",
     requestBody: {
-      input: "<value>",
+      input: true,
     },
   });
 
