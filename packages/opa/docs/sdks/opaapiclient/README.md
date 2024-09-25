@@ -154,11 +154,11 @@ run();
 
 ### Errors
 
-| Error Object       | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| errors.ClientError | 400                | application/json   |
-| errors.ServerError | 500                | application/json   |
-| errors.SDKError    | 4xx-5xx            | */*                |
+| Error Object        | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| errors.ClientError1 | 400                 | application/json    |
+| errors.ServerError  | 500                 | application/json    |
+| errors.SDKError     | 4xx-5xx             | */*                 |
 
 
 ## executePolicyWithInput
@@ -235,11 +235,11 @@ run();
 
 ### Errors
 
-| Error Object       | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| errors.ClientError | 400                | application/json   |
-| errors.ServerError | 500                | application/json   |
-| errors.SDKError    | 4xx-5xx            | */*                |
+| Error Object        | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| errors.ClientError1 | 400                 | application/json    |
+| errors.ServerError  | 500                 | application/json    |
+| errors.SDKError     | 4xx-5xx             | */*                 |
 
 
 ## executeBatchPolicyWithInput
@@ -326,7 +326,7 @@ run();
 
 | Error Object            | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| errors.ClientError      | 400                     | application/json        |
+| errors.ClientError1     | 400                     | application/json        |
 | errors.BatchServerError | 500                     | application/json        |
 | errors.SDKError         | 4xx-5xx                 | */*                     |
 

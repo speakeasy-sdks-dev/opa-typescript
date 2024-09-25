@@ -32,7 +32,7 @@ export async function executePolicyWithInput(
 ): Promise<
   Result<
     operations.ExecutePolicyWithInputResponse,
-    | errors.ClientError
+    | errors.ClientError1
     | errors.ServerError
     | SDKError
     | SDKValidationError
@@ -131,7 +131,7 @@ export async function executePolicyWithInput(
 
   const [result] = await M.match<
     operations.ExecutePolicyWithInputResponse,
-    | errors.ClientError
+    | errors.ClientError1
     | errors.ServerError
     | SDKError
     | SDKValidationError
@@ -145,7 +145,7 @@ export async function executePolicyWithInput(
       hdrs: true,
       key: "SuccessfulPolicyResponse",
     }),
-    M.jsonErr(400, errors.ClientError$inboundSchema),
+    M.jsonErr(400, errors.ClientError1$inboundSchema),
     M.jsonErr(500, errors.ServerError$inboundSchema),
     M.fail(["4XX", "5XX"]),
   )(response, req, { extraFields: responseFields });

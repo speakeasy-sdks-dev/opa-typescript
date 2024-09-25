@@ -32,7 +32,7 @@ export async function executeBatchPolicyWithInput(
 ): Promise<
   Result<
     operations.ExecuteBatchPolicyWithInputResponse,
-    | errors.ClientError
+    | errors.ClientError1
     | errors.BatchServerError
     | SDKError
     | SDKValidationError
@@ -131,7 +131,7 @@ export async function executeBatchPolicyWithInput(
 
   const [result] = await M.match<
     operations.ExecuteBatchPolicyWithInputResponse,
-    | errors.ClientError
+    | errors.ClientError1
     | errors.BatchServerError
     | SDKError
     | SDKValidationError
@@ -149,7 +149,7 @@ export async function executeBatchPolicyWithInput(
       hdrs: true,
       key: "BatchMixedResults",
     }),
-    M.jsonErr(400, errors.ClientError$inboundSchema),
+    M.jsonErr(400, errors.ClientError1$inboundSchema),
     M.jsonErr(500, errors.BatchServerError$inboundSchema),
     M.fail(["4XX", "5XX"]),
   )(response, req, { extraFields: responseFields });
