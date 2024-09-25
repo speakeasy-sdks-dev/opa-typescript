@@ -26,9 +26,9 @@ const opaApiClient = new OpaApiClient();
 
 async function run() {
   const result = await opaApiClient.executeDefaultPolicyWithInput("8203.11");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -56,7 +56,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -101,9 +101,9 @@ async function run() {
   const result = await opaApiClient.executePolicy({
     path: "app/rbac",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -133,7 +133,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -176,12 +176,12 @@ async function run() {
   const result = await opaApiClient.executePolicyWithInput({
     path: "app/rbac",
     requestBody: {
-      input: false,
+      input: true,
     },
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -203,7 +203,7 @@ async function run() {
   const res = await executePolicyWithInput(opaApiClient, {
     path: "app/rbac",
     requestBody: {
-      input: "<value>",
+      input: true,
     },
   });
 
@@ -214,7 +214,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -264,9 +264,9 @@ async function run() {
       },
     },
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -303,7 +303,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -344,9 +344,9 @@ const opaApiClient = new OpaApiClient();
 
 async function run() {
   const result = await opaApiClient.health();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -374,7 +374,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();

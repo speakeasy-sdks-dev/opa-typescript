@@ -6,13 +6,7 @@
 import { SuccessfulPolicyResponse } from "@styra/opa/sdk/models/components";
 
 let value: SuccessfulPolicyResponse = {
-  result: {
-    "allow": true,
-    "user_is_admin": true,
-    "user_is_granted": [
-      "<value>",
-    ],
-  },
+  result: false,
 };
 ```
 
