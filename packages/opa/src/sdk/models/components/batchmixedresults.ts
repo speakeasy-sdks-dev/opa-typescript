@@ -17,23 +17,23 @@ import {
   Result$outboundSchema,
 } from "./result.js";
 
-export type Location = {
+export type ResponsesLocation = {
   file: string;
   row: number;
   col: number;
 };
 
-export type Errors = {
+export type ResponsesErrors = {
   code: string;
   message: string;
-  location?: Location | undefined;
+  location?: ResponsesLocation | undefined;
 };
 
 export type ServerErrorWithStatusCode = {
   httpStatusCode?: string | undefined;
   code: string;
   message: string;
-  errors?: Array<Errors> | undefined;
+  errors?: Array<ResponsesErrors> | undefined;
   decisionId?: string | undefined;
 };
 
@@ -61,6 +61,9 @@ export type Responses =
   | (SuccessfulPolicyResponseWithStatusCode & { httpStatusCode: "200" })
   | (ServerErrorWithStatusCode & { httpStatusCode: "500" });
 
+/**
+ * Mixed success and failures.
+ */
 export type BatchMixedResults = {
   batchDecisionId?: string | undefined;
   /**
@@ -75,8 +78,8 @@ export type BatchMixedResults = {
 };
 
 /** @internal */
-export const Location$inboundSchema: z.ZodType<
-  Location,
+export const ResponsesLocation$inboundSchema: z.ZodType<
+  ResponsesLocation,
   z.ZodTypeDef,
   unknown
 > = z.object({
@@ -86,17 +89,17 @@ export const Location$inboundSchema: z.ZodType<
 });
 
 /** @internal */
-export type Location$Outbound = {
+export type ResponsesLocation$Outbound = {
   file: string;
   row: number;
   col: number;
 };
 
 /** @internal */
-export const Location$outboundSchema: z.ZodType<
-  Location$Outbound,
+export const ResponsesLocation$outboundSchema: z.ZodType<
+  ResponsesLocation$Outbound,
   z.ZodTypeDef,
-  Location
+  ResponsesLocation
 > = z.object({
   file: z.string(),
   row: z.number().int(),
@@ -107,52 +110,55 @@ export const Location$outboundSchema: z.ZodType<
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Location$ {
-  /** @deprecated use `Location$inboundSchema` instead. */
-  export const inboundSchema = Location$inboundSchema;
-  /** @deprecated use `Location$outboundSchema` instead. */
-  export const outboundSchema = Location$outboundSchema;
-  /** @deprecated use `Location$Outbound` instead. */
-  export type Outbound = Location$Outbound;
+export namespace ResponsesLocation$ {
+  /** @deprecated use `ResponsesLocation$inboundSchema` instead. */
+  export const inboundSchema = ResponsesLocation$inboundSchema;
+  /** @deprecated use `ResponsesLocation$outboundSchema` instead. */
+  export const outboundSchema = ResponsesLocation$outboundSchema;
+  /** @deprecated use `ResponsesLocation$Outbound` instead. */
+  export type Outbound = ResponsesLocation$Outbound;
 }
 
 /** @internal */
-export const Errors$inboundSchema: z.ZodType<Errors, z.ZodTypeDef, unknown> = z
-  .object({
-    code: z.string(),
-    message: z.string(),
-    location: z.lazy(() => Location$inboundSchema).optional(),
-  });
-
-/** @internal */
-export type Errors$Outbound = {
-  code: string;
-  message: string;
-  location?: Location$Outbound | undefined;
-};
-
-/** @internal */
-export const Errors$outboundSchema: z.ZodType<
-  Errors$Outbound,
+export const ResponsesErrors$inboundSchema: z.ZodType<
+  ResponsesErrors,
   z.ZodTypeDef,
-  Errors
+  unknown
 > = z.object({
   code: z.string(),
   message: z.string(),
-  location: z.lazy(() => Location$outboundSchema).optional(),
+  location: z.lazy(() => ResponsesLocation$inboundSchema).optional(),
+});
+
+/** @internal */
+export type ResponsesErrors$Outbound = {
+  code: string;
+  message: string;
+  location?: ResponsesLocation$Outbound | undefined;
+};
+
+/** @internal */
+export const ResponsesErrors$outboundSchema: z.ZodType<
+  ResponsesErrors$Outbound,
+  z.ZodTypeDef,
+  ResponsesErrors
+> = z.object({
+  code: z.string(),
+  message: z.string(),
+  location: z.lazy(() => ResponsesLocation$outboundSchema).optional(),
 });
 
 /**
  * @internal
  * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
  */
-export namespace Errors$ {
-  /** @deprecated use `Errors$inboundSchema` instead. */
-  export const inboundSchema = Errors$inboundSchema;
-  /** @deprecated use `Errors$outboundSchema` instead. */
-  export const outboundSchema = Errors$outboundSchema;
-  /** @deprecated use `Errors$Outbound` instead. */
-  export type Outbound = Errors$Outbound;
+export namespace ResponsesErrors$ {
+  /** @deprecated use `ResponsesErrors$inboundSchema` instead. */
+  export const inboundSchema = ResponsesErrors$inboundSchema;
+  /** @deprecated use `ResponsesErrors$outboundSchema` instead. */
+  export const outboundSchema = ResponsesErrors$outboundSchema;
+  /** @deprecated use `ResponsesErrors$Outbound` instead. */
+  export type Outbound = ResponsesErrors$Outbound;
 }
 
 /** @internal */
@@ -164,7 +170,7 @@ export const ServerErrorWithStatusCode$inboundSchema: z.ZodType<
   http_status_code: z.string().optional(),
   code: z.string(),
   message: z.string(),
-  errors: z.array(z.lazy(() => Errors$inboundSchema)).optional(),
+  errors: z.array(z.lazy(() => ResponsesErrors$inboundSchema)).optional(),
   decision_id: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
@@ -178,7 +184,7 @@ export type ServerErrorWithStatusCode$Outbound = {
   http_status_code?: string | undefined;
   code: string;
   message: string;
-  errors?: Array<Errors$Outbound> | undefined;
+  errors?: Array<ResponsesErrors$Outbound> | undefined;
   decision_id?: string | undefined;
 };
 
@@ -191,7 +197,7 @@ export const ServerErrorWithStatusCode$outboundSchema: z.ZodType<
   httpStatusCode: z.string().optional(),
   code: z.string(),
   message: z.string(),
-  errors: z.array(z.lazy(() => Errors$outboundSchema)).optional(),
+  errors: z.array(z.lazy(() => ResponsesErrors$outboundSchema)).optional(),
   decisionId: z.string().optional(),
 }).transform((v) => {
   return remap$(v, {
