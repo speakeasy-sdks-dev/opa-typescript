@@ -6,7 +6,7 @@ management:
   speakeasyVersion: internal
   generationVersion: 2.428.2
   releaseVersion: 1.6.0
-  configChecksum: cdbb0c75e719e150de542550878da2ae
+  configChecksum: 31f7b6e7d030fdc0c37192f2929f16fb
   repoURL: https://github.com/StyraInc/opa-typescript.git
   repoSubDirectory: packages/opa
   installationURL: https://gitpkg.now.sh/StyraInc/opa-typescript/packages/opa
@@ -14,12 +14,12 @@ features:
   typescript:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.1.11
-    core: 3.18.1
+    core: 3.18.2
     defaultEnabledRetries: 0.1.0
     enumUnions: 0.1.0
     envVarSecurityUsage: 0.1.1
     examples: 2.81.4
-    flattening: 2.81.1
+    flattening: 2.82.0
     globalSecurity: 2.82.11
     globalSecurityCallbacks: 0.1.0
     globalSecurityFlattening: 0.1.0

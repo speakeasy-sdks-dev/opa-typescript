@@ -43,10 +43,8 @@ export async function executeBatchPolicyWithInput(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) =>
       operations.ExecuteBatchPolicyWithInputRequest$outboundSchema.parse(value),
     "Input validation failed",

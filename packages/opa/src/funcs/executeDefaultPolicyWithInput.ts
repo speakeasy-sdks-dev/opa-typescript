@@ -47,9 +47,9 @@ export async function executeDefaultPolicyWithInput(
   >
 > {
   const input$: operations.ExecuteDefaultPolicyWithInputRequest = {
+    input: input,
     pretty: pretty,
     acceptEncoding: acceptEncoding,
-    input: input,
   };
 
   const parsed = safeParse(

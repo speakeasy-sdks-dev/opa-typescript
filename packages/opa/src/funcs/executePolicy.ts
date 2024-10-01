@@ -43,10 +43,8 @@ export async function executePolicy(
     | ConnectionError
   >
 > {
-  const input = request;
-
   const parsed = safeParse(
-    input,
+    request,
     (value) => operations.ExecutePolicyRequest$outboundSchema.parse(value),
     "Input validation failed",
   );
