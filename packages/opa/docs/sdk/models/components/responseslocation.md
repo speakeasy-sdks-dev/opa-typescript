@@ -1,14 +1,14 @@
-# Location
+# ResponsesLocation
 
 ## Example Usage
 
 ```typescript
-import { Location } from "@styra/opa/sdk/models/errors";
+import { ResponsesLocation } from "@styra/opa/sdk/models/components";
 
-let value: Location = {
+let value: ResponsesLocation = {
   file: "<value>",
-  row: 944669,
-  col: 521848,
+  row: 778157,
+  col: 870013,
 };
 ```
 
