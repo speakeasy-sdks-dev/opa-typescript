@@ -11,6 +11,12 @@ import {
   SuccessfulPolicyResponse$outboundSchema,
 } from "./successfulpolicyresponse.js";
 
+/**
+ * All batched policy executions succeeded.
+ *
+ * @remarks
+ * The server also returns 200 if the path refers to an undefined document. In this case, responses will be empty.
+ */
 export type BatchSuccessfulPolicyEvaluation = {
   batchDecisionId?: string | undefined;
   /**

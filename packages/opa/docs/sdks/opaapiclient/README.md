@@ -26,9 +26,9 @@ const opaApiClient = new OpaApiClient();
 
 async function run() {
   const result = await opaApiClient.executeDefaultPolicyWithInput("8203.11");
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -56,7 +56,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -79,12 +79,11 @@ run();
 
 ### Errors
 
-| Error Object       | Status Code        | Content Type       |
+| Error Type         | Status Code        | Content Type       |
 | ------------------ | ------------------ | ------------------ |
-| errors.ClientError | 400,404            | application/json   |
+| errors.ClientError | 400, 404           | application/json   |
 | errors.ServerError | 500                | application/json   |
-| errors.SDKError    | 4xx-5xx            | */*                |
-
+| errors.SDKError    | 4XX, 5XX           | \*/\*              |
 
 ## executePolicy
 
@@ -101,9 +100,9 @@ async function run() {
   const result = await opaApiClient.executePolicy({
     path: "app/rbac",
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -133,7 +132,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -154,12 +153,11 @@ run();
 
 ### Errors
 
-| Error Object       | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| errors.ClientError | 400                | application/json   |
-| errors.ServerError | 500                | application/json   |
-| errors.SDKError    | 4xx-5xx            | */*                |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| errors.ClientError1 | 400                 | application/json    |
+| errors.ServerError  | 500                 | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## executePolicyWithInput
 
@@ -176,12 +174,12 @@ async function run() {
   const result = await opaApiClient.executePolicyWithInput({
     path: "app/rbac",
     requestBody: {
-      input: false,
+      input: true,
     },
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -203,7 +201,7 @@ async function run() {
   const res = await executePolicyWithInput(opaApiClient, {
     path: "app/rbac",
     requestBody: {
-      input: "<value>",
+      input: true,
     },
   });
 
@@ -214,7 +212,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -235,12 +233,11 @@ run();
 
 ### Errors
 
-| Error Object       | Status Code        | Content Type       |
-| ------------------ | ------------------ | ------------------ |
-| errors.ClientError | 400                | application/json   |
-| errors.ServerError | 500                | application/json   |
-| errors.SDKError    | 4xx-5xx            | */*                |
-
+| Error Type          | Status Code         | Content Type        |
+| ------------------- | ------------------- | ------------------- |
+| errors.ClientError1 | 400                 | application/json    |
+| errors.ServerError  | 500                 | application/json    |
+| errors.SDKError     | 4XX, 5XX            | \*/\*               |
 
 ## executeBatchPolicyWithInput
 
@@ -264,9 +261,9 @@ async function run() {
       },
     },
   });
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -303,7 +300,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -324,12 +321,11 @@ run();
 
 ### Errors
 
-| Error Object            | Status Code             | Content Type            |
+| Error Type              | Status Code             | Content Type            |
 | ----------------------- | ----------------------- | ----------------------- |
-| errors.ClientError      | 400                     | application/json        |
+| errors.ClientError1     | 400                     | application/json        |
 | errors.BatchServerError | 500                     | application/json        |
-| errors.SDKError         | 4xx-5xx                 | */*                     |
-
+| errors.SDKError         | 4XX, 5XX                | \*/\*                   |
 
 ## health
 
@@ -344,9 +340,9 @@ const opaApiClient = new OpaApiClient();
 
 async function run() {
   const result = await opaApiClient.health();
-  
+
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -374,7 +370,7 @@ async function run() {
   const { value: result } = res;
 
   // Handle the result
-  console.log(result)
+  console.log(result);
 }
 
 run();
@@ -397,7 +393,7 @@ run();
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | errors.UnhealthyServer | 500                    | application/json       |
-| errors.SDKError        | 4xx-5xx                | */*                    |
+| errors.SDKError        | 4XX, 5XX               | \*/\*                  |

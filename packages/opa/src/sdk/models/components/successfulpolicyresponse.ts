@@ -17,6 +17,12 @@ import {
   Result$outboundSchema,
 } from "./result.js";
 
+/**
+ * Success.
+ *
+ * @remarks
+ * The server also returns 200 if the path refers to an undefined document. In this case, the response will not contain a result property.
+ */
 export type SuccessfulPolicyResponse = {
   /**
    * The base or virtual document referred to by the URL path. If the path is undefined, this key will be omitted.

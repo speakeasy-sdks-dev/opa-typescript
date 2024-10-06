@@ -13,4 +13,5 @@ export * from "./input.js";
 export * from "./provenance.js";
 export * from "./result.js";
 export * from "./security.js";
+export * from "./servererror.js";
 export * from "./successfulpolicyresponse.js";
