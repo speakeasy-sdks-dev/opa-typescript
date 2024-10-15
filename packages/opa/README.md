@@ -445,12 +445,11 @@ To read more about standalone functions, check [FUNCTIONS.md](./FUNCTIONS.md).
 
 <summary>Available standalone functions</summary>
 
-- [executeBatchPolicyWithInput](docs/sdks/opaapiclient/README.md#executebatchpolicywithinput)
-- [executeDefaultPolicyWithInput](docs/sdks/opaapiclient/README.md#executedefaultpolicywithinput)
-- [executePolicyWithInput](docs/sdks/opaapiclient/README.md#executepolicywithinput)
-- [executePolicy](docs/sdks/opaapiclient/README.md#executepolicy)
-- [health](docs/sdks/opaapiclient/README.md#health)
-
+- [`executeBatchPolicyWithInput`](docs/sdks/opaapiclient/README.md#executebatchpolicywithinput) - Execute a policy given a batch of inputs
+- [`executeDefaultPolicyWithInput`](docs/sdks/opaapiclient/README.md#executedefaultpolicywithinput) - Execute the default decision  given an input
+- [`executePolicy`](docs/sdks/opaapiclient/README.md#executepolicy) - Execute a policy
+- [`executePolicyWithInput`](docs/sdks/opaapiclient/README.md#executepolicywithinput) - Execute a policy given an input
+- [`health`](docs/sdks/opaapiclient/README.md#health) - Verify the server is operational
 
 </details>
 <!-- End Standalone functions [standalone-funcs] -->

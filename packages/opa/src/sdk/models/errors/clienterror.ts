@@ -49,6 +49,39 @@ export class ClientError extends Error {
   }
 }
 
+/**
+ * Bad Request
+ */
+export type ClientError1Data = {
+  code: string;
+  message: string;
+  errors?: Array<Errors> | undefined;
+};
+
+/**
+ * Bad Request
+ */
+export class ClientError1 extends Error {
+  code: string;
+  errors?: Array<Errors> | undefined;
+
+  /** The original data that was passed to this error instance. */
+  data$: ClientError1Data;
+
+  constructor(err: ClientError1Data) {
+    const message = "message" in err && typeof err.message === "string"
+      ? err.message
+      : `API error occurred: ${JSON.stringify(err)}`;
+    super(message);
+    this.data$ = err;
+
+    this.code = err.code;
+    if (err.errors != null) this.errors = err.errors;
+
+    this.name = "ClientError1";
+  }
+}
+
 /** @internal */
 export const Location$inboundSchema: z.ZodType<
   Location,
@@ -175,4 +208,51 @@ export namespace ClientError$ {
   export const outboundSchema = ClientError$outboundSchema;
   /** @deprecated use `ClientError$Outbound` instead. */
   export type Outbound = ClientError$Outbound;
+}
+
+/** @internal */
+export const ClientError1$inboundSchema: z.ZodType<
+  ClientError1,
+  z.ZodTypeDef,
+  unknown
+> = z.object({
+  code: z.string(),
+  message: z.string(),
+  errors: z.array(z.lazy(() => Errors$inboundSchema)).optional(),
+})
+  .transform((v) => {
+    return new ClientError1(v);
+  });
+
+/** @internal */
+export type ClientError1$Outbound = {
+  code: string;
+  message: string;
+  errors?: Array<Errors$Outbound> | undefined;
+};
+
+/** @internal */
+export const ClientError1$outboundSchema: z.ZodType<
+  ClientError1$Outbound,
+  z.ZodTypeDef,
+  ClientError1
+> = z.instanceof(ClientError1)
+  .transform(v => v.data$)
+  .pipe(z.object({
+    code: z.string(),
+    message: z.string(),
+    errors: z.array(z.lazy(() => Errors$outboundSchema)).optional(),
+  }));
+
+/**
+ * @internal
+ * @deprecated This namespace will be removed in future versions. Use schemas and types that are exported directly from this module.
+ */
+export namespace ClientError1$ {
+  /** @deprecated use `ClientError1$inboundSchema` instead. */
+  export const inboundSchema = ClientError1$inboundSchema;
+  /** @deprecated use `ClientError1$outboundSchema` instead. */
+  export const outboundSchema = ClientError1$outboundSchema;
+  /** @deprecated use `ClientError1$Outbound` instead. */
+  export type Outbound = ClientError1$Outbound;
 }
