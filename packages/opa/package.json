@@ -2,6 +2,10 @@
   "name": "@styra/opa",
   "version": "1.6.0",
   "author": "Styra",
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public"
+  },
   "keywords": [
     "OPA",
     "Open Policy Agent",
@@ -11,10 +15,6 @@
     "rbac",
     "role based access control"
   ],
-  "license": "Apache-2.0",
-  "publishConfig": {
-    "access": "public"
-  },
   "tshy": {
     "exports": {
       ".": "./src/index.ts",
@@ -58,96 +58,7 @@
     "typescript": "^5.4.5",
     "zod": "^3.23.4"
   },
-  "dependencies": {},
-  "exports": {
-    ".": {
-      "import": {
-        "source": "./src/index.ts",
-        "types": "./dist/esm/index.d.ts",
-        "default": "./dist/esm/index.js"
-      },
-      "require": {
-        "source": "./src/index.ts",
-        "types": "./dist/commonjs/index.d.ts",
-        "default": "./dist/commonjs/index.js"
-      }
-    },
-    "./package.json": "./package.json",
-    "./types": {
-      "import": {
-        "source": "./src/types/index.ts",
-        "types": "./dist/esm/types/index.d.ts",
-        "default": "./dist/esm/types/index.js"
-      },
-      "require": {
-        "source": "./src/types/index.ts",
-        "types": "./dist/commonjs/types/index.d.ts",
-        "default": "./dist/commonjs/types/index.js"
-      }
-    },
-    "./sdk/models/errors": {
-      "import": {
-        "source": "./src/sdk/models/errors/index.ts",
-        "types": "./dist/esm/sdk/models/errors/index.d.ts",
-        "default": "./dist/esm/sdk/models/errors/index.js"
-      },
-      "require": {
-        "source": "./src/sdk/models/errors/index.ts",
-        "types": "./dist/commonjs/sdk/models/errors/index.d.ts",
-        "default": "./dist/commonjs/sdk/models/errors/index.js"
-      }
-    },
-    "./sdk/models/components": {
-      "import": {
-        "source": "./src/sdk/models/components/index.ts",
-        "types": "./dist/esm/sdk/models/components/index.d.ts",
-        "default": "./dist/esm/sdk/models/components/index.js"
-      },
-      "require": {
-        "source": "./src/sdk/models/components/index.ts",
-        "types": "./dist/commonjs/sdk/models/components/index.d.ts",
-        "default": "./dist/commonjs/sdk/models/components/index.js"
-      }
-    },
-    "./sdk/models/operations": {
-      "import": {
-        "source": "./src/sdk/models/operations/index.ts",
-        "types": "./dist/esm/sdk/models/operations/index.d.ts",
-        "default": "./dist/esm/sdk/models/operations/index.js"
-      },
-      "require": {
-        "source": "./src/sdk/models/operations/index.ts",
-        "types": "./dist/commonjs/sdk/models/operations/index.d.ts",
-        "default": "./dist/commonjs/sdk/models/operations/index.js"
-      }
-    },
-    "./*.js": {
-      "import": {
-        "source": "./src/*.ts",
-        "types": "./dist/esm/*.d.ts",
-        "default": "./dist/esm/*.js"
-      },
-      "require": {
-        "source": "./src/*.ts",
-        "types": "./dist/commonjs/*.d.ts",
-        "default": "./dist/commonjs/*.js"
-      }
-    },
-    "./*": {
-      "import": {
-        "source": "./src/*.ts",
-        "types": "./dist/esm/*.d.ts",
-        "default": "./dist/esm/*.js"
-      },
-      "require": {
-        "source": "./src/*.ts",
-        "types": "./dist/commonjs/*.d.ts",
-        "default": "./dist/commonjs/*.js"
-      }
-    }
-  },
-  "main": "./dist/commonjs/index.js",
-  "types": "./dist/commonjs/index.d.ts",
-  "type": "module",
-  "module": "./dist/esm/index.js"
+  "dependencies": {
+    
+  }
 }

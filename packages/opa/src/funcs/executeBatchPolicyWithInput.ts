@@ -90,12 +90,13 @@ export async function executeBatchPolicyWithInput(
 
   const secConfig = await extractSecurity(client._options.bearerAuth);
   const securityInput = secConfig == null ? {} : { bearerAuth: secConfig };
+  const requestSecurity = resolveGlobalSecurity(securityInput);
   const context = {
     operationID: "executeBatchPolicyWithInput",
     oAuth2Scopes: [],
-    securitySource: client._options.bearerAuth,
+    securitySource: secConfig,
+    resolvedSecurity: requestSecurity,
   };
-  const requestSecurity = resolveGlobalSecurity(securityInput);
 
   const requestRes = client._createRequest(context, {
     security: requestSecurity,
