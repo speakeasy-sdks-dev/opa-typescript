@@ -4,10 +4,16 @@
 
 import * as z from "zod";
 
+/**
+ * OPA service is not healthy. If the bundles option is specified this can mean any of the configured bundles have not yet been activated. If the plugins option is specified then at least one plugin is in a non-OK state.
+ */
 export type UnhealthyServerData = {
   code?: string | undefined;
 };
 
+/**
+ * OPA service is not healthy. If the bundles option is specified this can mean any of the configured bundles have not yet been activated. If the plugins option is specified then at least one plugin is in a non-OK state.
+ */
 export class UnhealthyServer extends Error {
   code?: string | undefined;
 
